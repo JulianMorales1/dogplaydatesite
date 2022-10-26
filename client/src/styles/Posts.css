@@ -1,0 +1,67 @@
+.user_section {
+	width: 350px;
+	border-bottom: 5px solid gray;
+	margin-bottom: 50px;
+	padding-left: 15px;
+}
+.btn_play_date {
+	cursor: pointer;
+	background-color: #d0bfff;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+.btn_play_date:hover {
+	background-color: #e5dbff;
+}
+.post {
+	padding: 20px;
+}
+.post img {
+	background-color: rgb(61, 61, 206);
+	display: inline-block;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+}
+.dog_name {
+}
+.dog_breed {
+}
+.user {
+}
+.actions {
+}
+.btn_comment {
+	background-color: rgb(67, 147, 67);
+}
+.btn_book {
+	background-color: rgb(127, 174, 213);
+}
+
+.btn_comment_submit {
+	box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
+}
+.comment_box {
+	background-color: rgb(237, 229, 229);
+	box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+.comments {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	padding-left: 10px;
+}
+.comment {
+	width: 350px;
+	border-bottom: 1px solid gray;
+	padding: 5px;
+}
+.comment > p {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}

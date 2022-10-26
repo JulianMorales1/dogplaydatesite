@@ -1,0 +1,21 @@
+.home {
+	/* background-color: #868e96; */
+	/* height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center; */
+}
+
+.home > h1 {
+	/* background-color: #e67700;
+	color: #000;
+	padding: 50px;
+	border-radius: 15px;
+	margin: 0 auto;
+	width: 450px;
+	margin-top: 150px;
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: 1.5px;
+	color: white; */
+}

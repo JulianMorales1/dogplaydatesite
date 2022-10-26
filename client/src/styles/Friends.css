@@ -1,0 +1,17 @@
+.public_users_list {
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+.public_users_list > li {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+}
+
+.sent {
+	background-color: brown;
+	color: white;
+	cursor: not-allowed;
+}

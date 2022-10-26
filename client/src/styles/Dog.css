@@ -1,35 +1,35 @@
-.dog{
+.dog {
+	padding: 0;
+	/* margin: 0 auto; */
+	background-color: #545553;
+	width: 20%;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	padding: 10px;
+}
+.row {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
 
-    padding:0;
-    margin:0;
-    background-color: #545553;
-    width: 30%;
-    margin-bottom: 10px;
-    border-radius: 5px;
+.actions {
+	display: flex;
+	align-items: center;
+	gap: 10px;
 }
-.row{
-    display: flex;
-    align-items: center;
-    gap:8px;
+.btn {
+	border-radius: 5px;
+	padding: 5px 10px;
+	cursor: pointer;
+	color: white;
 }
-
-.actions{
-    display: flex;
-    align-items: center;
-    gap:10px;
+.btn_delete {
+	background-color: red;
 }
-.btn{
-    border-radius: 5px;
-    padding: 5px 10px;
-    cursor: pointer;
-    color:white;
+.btn_view {
+	background-color: green;
 }
-.btn_delete{
-    background-color: red;
-}
-.btn_view{
-    background-color: green;
-}
-.btn_edit{
-    background-color: blue;
+.btn_edit {
+	background-color: blue;
 }
