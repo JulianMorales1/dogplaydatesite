@@ -19,7 +19,7 @@ const Friends = () => {
 		};
 
 		const response = await fetch(
-			process.env.REACT_APP_SERVER_URL + '/send_friend_request',
+			process.env.REACT_APP_URL + '/send_friend_request',
 			{
 				method: 'POST',
 				headers: {
@@ -40,7 +40,7 @@ const Friends = () => {
 		};
 
 		const response = await fetch(
-			process.env.REACT_APP_SERVER_URL + '/accept_friend_request',
+			process.env.REACT_APP_URL + '/accept_friend_request',
 			{
 				method: 'POST',
 				headers: {
@@ -61,7 +61,7 @@ const Friends = () => {
 			if (user._id !== undefined) {
 				console.log(user._id);
 				const response = await fetch(
-					process.env.REACT_APP_SERVER_URL + '/users/' + user.email
+					process.env.REACT_APP_URL + '/users/' + user.email
 				);
 				const json = await response.json();
 

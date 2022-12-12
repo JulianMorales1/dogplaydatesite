@@ -6,7 +6,7 @@ const Dog = ({ dog, onDelete, onEdit, onView }) => {
 		<li className='dog'>
 			<img
 				src={
-					process.env.REACT_APP_SERVER_URL +
+					process.env.REACT_APP_URL +
 					'/uploads/photo_' +
 					dog._id +
 					dog.ext

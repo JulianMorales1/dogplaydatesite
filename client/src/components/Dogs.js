@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux';
 
 import '../styles/Dogs.css';
 import AddDog from './AddDog.js';
+
+const baseURL = process.env.REACT_APP_URL;
 const Dogs = () => {
 	const user = useSelector((state) => {
 		return state.user.user;
@@ -23,14 +25,14 @@ const Dogs = () => {
 		}
 
 		formData.append('file', document.querySelector('.dogFileCreate').files[0]);
-		const response = await fetch('http://localhost:5000/dogs/' + user._id, {
+		const response = await fetch(baseURL + '/dogs/' + user._id, {
 			method: 'POST',
 			body: formData,
 		});
 		const result = await response.json();
 
 		if (result.success) {
-			fetch(`http://localhost:5000/dogs/${user._id}`)
+			fetch(baseURL + `/dogs/${user._id}`)
 				.then((response) => response.json())
 				.then((result) => {
 					if (result.success) {
@@ -47,7 +49,7 @@ const Dogs = () => {
 	};
 
 	const dogDeleteHandler = async (id) => {
-		const response = await fetch('http://localhost:5000/dogs/' + id, {
+		const response = await fetch(baseURL + '/dogs/' + id, {
 			method: 'DELETE',
 			headers: {
 				Accept: 'application/json',
@@ -57,7 +59,7 @@ const Dogs = () => {
 		const result = await response.json();
 
 		if (result.success) {
-			fetch(`http://localhost:5000/dogs/${user._id}`)
+			fetch(baseURL + `/dogs/${user._id}`)
 				.then((response) => response.json())
 				.then((result) => {
 					if (result.success) {
@@ -74,7 +76,7 @@ const Dogs = () => {
 	};
 
 	useEffect(() => {
-		fetch(`http://localhost:5000/dogs/${user._id}`)
+		fetch(baseURL + `/dogs/${user._id}`)
 			.then((response) => response.json())
 			.then((result) => {
 				if (result.success) {

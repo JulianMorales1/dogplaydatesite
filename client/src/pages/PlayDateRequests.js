@@ -14,7 +14,7 @@ const PlayDateRequests = () => {
 		const date = e.target.getAttribute('date');
 
 		const response = await fetch(
-			process.env.REACT_APP_SERVER_URL + '/accept_play_date_request/',
+			process.env.REACT_APP_URL + '/accept_play_date_request/',
 			{
 				method: 'POST',
 				headers: {
@@ -40,7 +40,7 @@ const PlayDateRequests = () => {
 	useEffect(() => {
 		(async () => {
 			const response = await fetch(
-				process.env.REACT_APP_SERVER_URL + '/play_date_request/' + user.email
+				process.env.REACT_APP_URL + '/play_date_request/' + user.email
 			);
 			const json = await response.json();
 

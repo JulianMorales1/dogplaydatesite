@@ -21,7 +21,7 @@ const Calendar = () => {
 	useEffect(() => {
 		(async () => {
 			const response = await fetch(
-				process.env.REACT_APP_SERVER_URL + '/calendar/' + user.email
+				process.env.REACT_APP_URL + '/calendar/' + user.email
 			);
 			const json = await response.json();
 

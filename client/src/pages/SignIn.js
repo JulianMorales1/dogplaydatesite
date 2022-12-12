@@ -5,6 +5,7 @@ import { login } from '../userSlice';
 
 import '../styles/Signup.css';
 
+const baseURL = process.env.REACT_APP_URL;
 const SignIn = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -14,7 +15,7 @@ const SignIn = () => {
 
 	const submitHandler = (e) => {
 		e.preventDefault();
-		fetch('http://localhost:5000/signin', {
+		fetch(baseURL + '/signin', {
 			method: 'POST',
 			headers: {
 				Accept: 'application/json',

@@ -24,7 +24,7 @@ const Post = ({ dog }) => {
 			dog: dog._id,
 		};
 		const response = await fetch(
-			process.env.REACT_APP_SERVER_URL + '/comments',
+			process.env.REACT_APP_URL + '/comments',
 			{
 				method: 'POST',
 				headers: {
@@ -45,7 +45,7 @@ const Post = ({ dog }) => {
 
 	return (
 		<div className='post'>
-			<img src={process.env.REACT_APP_SERVER_URL + dog.photo} alt='dog' />
+			<img src={process.env.REACT_APP_URL + dog.photo} alt='dog' />
 			<p className='dog_name'>
 				<strong>Dog Name: {dog.name}</strong>
 			</p>

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
-
 import '../styles/Signup.css';
+
+const baseURL = process.env.REACT_APP_URL;
 
 const SignUp = () => {
 	const [email, setEmail] = useState('');
@@ -11,7 +12,7 @@ const SignUp = () => {
 
 	const submitHandler = (e) => {
 		e.preventDefault();
-		fetch('http://localhost:5000/SignUp', {
+		fetch(baseURL + '/SignUp', {
 			method: 'POST',
 			headers: {
 				Accept: 'application/json',

@@ -22,11 +22,12 @@ app.use(express.urlencoded({ extended: true }));
 // file uploading
 app.use(fileUpload());
 
-app.listen(5000, () => console.log('Server is Running'));
+app.listen(4000, () => console.log('Server is Running'));
 
 // Set static folder
-app.use(express.static(path.join(__dirname, 'public')));
-app.post('/SignUp', async (req, res) => {
+//app.use(express.static(path.join(__dirname, 'public')));
+app.use('/api', express.static('public'))
+app.post('/api/SignUp', async (req, res) => {
 	console.log(req.body);
 	const user = await User.create(req.body);
 	if (user) {
@@ -37,7 +38,7 @@ app.post('/SignUp', async (req, res) => {
 	}
 });
 
-app.post('/signin', async (req, res) => {
+app.post('/api/signin', async (req, res) => {
 	console.log(req.body);
 	const user = await User.find({
 		email: req.body.email,
@@ -53,7 +54,7 @@ app.post('/signin', async (req, res) => {
 
 // get list of existing users
 
-app.get('/users/:excludedUser', async (req, res) => {
+app.get('/api/users/:excludedUser', async (req, res) => {
 	const users = await User.find();
 
 	const filtered = users.filter(
@@ -68,7 +69,7 @@ app.get('/users/:excludedUser', async (req, res) => {
 
 // Hanlder Friend Request
 
-app.post('/send_friend_request', async (req, res) => {
+app.post('/api/send_friend_request', async (req, res) => {
 	const { sender, reciever } = req.body;
 	const user = await User.findOne({
 		email: reciever,
@@ -97,7 +98,7 @@ app.post('/send_friend_request', async (req, res) => {
 	});
 });
 
-app.post('/accept_friend_request', async (req, res) => {
+app.post('/api/accept_friend_request', async (req, res) => {
 	const { acceptor_email, acceptor_id, sender_email } = req.body;
 	const acceptor = await User.findOne({
 		email: acceptor_email,
@@ -133,7 +134,7 @@ app.post('/accept_friend_request', async (req, res) => {
 //accept_friend_request
 // Inserting dogs in Dtabase
 
-app.post('/dogs/:userid', async (req, res, next) => {
+app.post('/api/dogs/:userid', async (req, res, next) => {
 	// const { user, dog } = req.body;
 
 	const dog = {
@@ -178,7 +179,7 @@ app.post('/dogs/:userid', async (req, res, next) => {
 	// }
 });
 
-app.put('/dogs/:id', async (req, res) => {
+app.put('/api/dogs/:id', async (req, res) => {
 	const { user, dog } = req.body;
 	// const existingUser = await User.find({
 	//     email:req.body.email,password:req.body.password
@@ -207,7 +208,7 @@ app.put('/dogs/:id', async (req, res) => {
 	}
 });
 
-app.delete('/dogs/:id', async (req, res) => {
+app.delete('/api/dogs/:id', async (req, res) => {
 	//const {user,dog} = req.body;
 	// const existingUser = await User.find({
 	//     email:req.body.email,password:req.body.password
@@ -237,7 +238,7 @@ app.delete('/dogs/:id', async (req, res) => {
 });
 
 // get dogs
-app.get('/dogs/:userId', async (req, res) => {
+app.get('/api/dogs/:userId', async (req, res) => {
 	// const existingUser = await User.find({
 	//     email:req.params.email,password:req.params.password
 	//    })
@@ -253,7 +254,7 @@ app.get('/dogs/:userId', async (req, res) => {
 		});
 
 		const updatedDogs = allDogs.map((dog) => {
-			dog.photo = '/uploads/photo_' + dog._id + dog.ext;
+			dog.photo = '/api/uploads/photo_' + dog._id + dog.ext;
 			return dog;
 		});
 		console.log(updatedDogs);
@@ -272,7 +273,7 @@ app.get('/dogs/:userId', async (req, res) => {
 });
 
 // get dogs
-app.get('/all_posts/:useremail', async (req, res) => {
+app.get('/api/all_posts/:useremail', async (req, res) => {
 	// const existingUser = await User.find({
 	//     email:req.params.email,password:req.params.password
 	//    })
@@ -312,7 +313,7 @@ app.get('/all_posts/:useremail', async (req, res) => {
 					sentRequests: dog.user.sentRequests,
 				},
 			};
-			newDog['photo'] = '/uploads/photo_' + dog._id + dog.ext;
+			newDog['photo'] = '/api/uploads/photo_' + dog._id + dog.ext;
 
 			const filteredComments = comments.filter((c) => {
 				if (c.dog._id.toString() === newDog._id.toString()) {
@@ -343,7 +344,7 @@ app.get('/all_posts/:useremail', async (req, res) => {
 
 // handling comments
 
-app.post('/comments', async (req, res) => {
+app.post('/api/comments', async (req, res) => {
 	const createdComment = await Comment.create(req.body);
 
 	if (createdComment) {
@@ -359,7 +360,7 @@ app.post('/comments', async (req, res) => {
 
 // Managing Play Date Requests
 
-app.post('/play_date_request', async (req, res) => {
+app.post('/api/play_date_request', async (req, res) => {
 	const pdr = await PlayDateRequest.create(req.body);
 	if (pdr) {
 		res.status(201).json({
@@ -374,7 +375,7 @@ app.post('/play_date_request', async (req, res) => {
 
 // get play list request list
 
-app.get('/play_date_request/:useremail', async (req, res) => {
+app.get('/api/play_date_request/:useremail', async (req, res) => {
 	const allRequests = await PlayDateRequest.find().populate('sender');
 
 	const filtered = allRequests.filter((pdr) => {
@@ -391,7 +392,7 @@ app.get('/play_date_request/:useremail', async (req, res) => {
 
 // accept playdate request
 
-app.post('/accept_play_date_request', async (req, res) => {
+app.post('/api/accept_play_date_request', async (req, res) => {
 	// body: JSON.stringify({
 	// 	id: e.target.value,
 	// 	sender: senderEmail,
@@ -429,7 +430,7 @@ app.post('/accept_play_date_request', async (req, res) => {
 
 // get Calandar
 
-app.get('/calendar/:useremail', async (req, res) => {
+app.get('/api/calendar/:useremail', async (req, res) => {
 	// const bookingsAsSender = await Booking.find({
 	// 	senderEmail: req.params.useremail,
 	// });
